@@ -6,6 +6,6 @@ public abstract class Condition<TContext,TResult>:IExecution<TContext,TResult>
     {
         get;
     }
-    public abstract ITickResult<TResult> Tick(TContext Context, int Milliseconds);
+    public abstract ITickResult<TResult> Tick(TContext Context, long Ticks);
 
 }

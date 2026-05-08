@@ -7,5 +7,5 @@ public interface IBehavior<in TContext, out TResult>
         get;
     }
 
-    ITickResult<TResult> Tick(TContext Context, int Milliseconds);
+    ITickResult<TResult> Tick(TContext Context, long Ticks);
 }

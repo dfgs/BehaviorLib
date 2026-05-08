@@ -1,19 +1,24 @@
 ﻿using BehaviorLib;
 using BehaviorLib.Executions;
+using Test;
 
-Console.WriteLine("Hello, World!");
-
-object context="test";
-IBehavior<object,bool> behavior;
+IBehavior<Player,bool> behavior;
 
 
-behavior = Behavior.Sequence(Behavior.Success<object,bool>((context)=>true),Behavior.Fail<object,bool>());
 
 
-var test = behavior.Select<object, bool, int>(resultIn => resultIn?1:0);
-var t=test.Tick(context, 10);
+behavior = from position in Behavior.Execute<Player,int>((Player,Ticks)=> Player.LocateTreasure(Ticks))
+			from result in Behavior.Execute<Player,bool>((Player,Ticks)=>Player.MoveTo(Ticks, position))
+			select result;
 
-var test2 = from resultIn in behavior
-	select resultIn?1:0;
 
-behavior.Tick(context,10);	
+Console.WriteLine("Start");
+
+Player player = new Player();
+ITickResult<bool> r;
+for (long tick = 0; tick < 10; tick++)
+{
+	r = behavior.Tick(player, tick);
+	Console.WriteLine("{0}",r);
+}
+	

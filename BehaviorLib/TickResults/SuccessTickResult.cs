@@ -8,4 +8,9 @@ public class SuccessTickResult<TResult>:ISucessTickResult<TResult>
 	{
 		this.Result = Result;
 	}
+
+	public override string ToString()
+	{
+		return $"Success: {Result}";
+	}
 }

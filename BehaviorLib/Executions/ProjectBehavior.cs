@@ -12,15 +12,15 @@ public class ProjectBehavior<TContext,TResultIn,TResultOut>:Action<TContext,TRes
 		this.projection = Projection;
 	}
 
-	public override ITickResult<TResultOut> Tick(TContext Context, int Milliseconds)
+	public override ITickResult<TResultOut> Tick(TContext Context, long Ticks)
 	{
 		ITickResult<TResultIn> resultIn;
 
-		resultIn = behaviorIn.Tick(Context,Milliseconds);
+		resultIn = behaviorIn.Tick(Context,Ticks);
 		switch(resultIn)
 		{
 			case SuccessTickResult<TResultIn> successResult:
-				return projection(successResult.Result).Tick(Context, Milliseconds);
+				return projection(successResult.Result).Tick(Context, Ticks);
 			case ProgressTickResult<TResultIn>:
 				return new ProgressTickResult<TResultOut>();
 		}

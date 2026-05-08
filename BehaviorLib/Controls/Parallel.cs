@@ -6,7 +6,7 @@ public class Parallel<TContext,TResult>:IControl<TContext,TResult>
     
     
     
-    public ITickResult<TResult> Tick(TContext Context, int Milliseconds)
+    public ITickResult<TResult> Tick(TContext Context, long Ticks)
     {
         throw new NotImplementedException();
     }

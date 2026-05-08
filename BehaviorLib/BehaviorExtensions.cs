@@ -21,11 +21,11 @@ public static class ParserExtensions
 	   Func<TResultIn, IBehavior<TContext,U>> Selector,
 	   Func<TResultIn, U, TResultOut> Projector)
 	{
-		if (BehaviorIn == null) throw new ArgumentNullException(nameof(BehaviorIn));
-		if (Selector == null) throw new ArgumentNullException(nameof(Selector));
-		if (Projector == null) throw new ArgumentNullException(nameof(Projector));
+        ArgumentNullException.ThrowIfNull(BehaviorIn);
+        ArgumentNullException.ThrowIfNull(Selector);
+        ArgumentNullException.ThrowIfNull(Projector);
 
-		return BehaviorIn.Then(t => Selector(t).Select(u => Projector(t,  u  )));
+        return BehaviorIn.Then(t => Selector(t).Select(u => Projector(t,  u  )));
 	}
 
 
@@ -33,10 +33,10 @@ public static class ParserExtensions
 	// Single_Single
 	public static IBehavior<TContext,TResultOut> Then<TContext,TResultIn, TResultOut>(this IBehavior<TContext,TResultIn> BehaviorIn, Func<TResultIn, IBehavior<TContext,TResultOut>> Projection)
 	{
-		if (BehaviorIn == null) throw new ArgumentNullException(nameof(BehaviorIn));
-		if (Projection == null) throw new ArgumentNullException(nameof(Projection));
+        ArgumentNullException.ThrowIfNull(BehaviorIn);
+        ArgumentNullException.ThrowIfNull(Projection);
 
-		return new ProjectBehavior<TContext,TResultIn,TResultOut>(BehaviorIn, Projection);
+        return new ProjectBehavior<TContext,TResultIn,TResultOut>(BehaviorIn, Projection);
 	}
 
 	

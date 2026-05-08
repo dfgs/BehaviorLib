@@ -19,5 +19,9 @@ public static class Behavior
     {
         return new Fail<TContext,TResult>();
     }
+    public static IBehavior<TContext,TResult> Execute<TContext,TResult>(Func<TContext,long,ITickResult<TResult>> Function)
+    {
+        return new Execute<TContext, TResult>(Function);
+    }
 
 }

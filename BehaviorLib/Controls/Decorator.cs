@@ -6,7 +6,7 @@ public abstract class Decorator<TContext,TResult>:IControl<TContext,TResult>
     {
         get;
     }
-    public abstract ITickResult<TResult> Tick(TContext Context, int Milliseconds);
+    public abstract ITickResult<TResult> Tick(TContext Context, long Ticks);
 
     
 }

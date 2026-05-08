@@ -11,7 +11,7 @@ public class Sequence<TContext,TResult>: IControl<TContext,TResult>
     {
         this.behaviors = Behaviors;
     }
-    public ITickResult<TResult> Tick(TContext Context, int Milliseconds)
+    public ITickResult<TResult> Tick(TContext Context, long Ticks)
     {
         throw new NotImplementedException();
     }

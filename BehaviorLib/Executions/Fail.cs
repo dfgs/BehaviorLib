@@ -9,7 +9,7 @@ public class Fail<TContext,TResult>:Action<TContext,TResult>
 		
 	}
 	
-	public override ITickResult<TResult> Tick(TContext Context, int Milliseconds)
+	public override ITickResult<TResult> Tick(TContext Context, long Ticks)
 	{
 		return new FailTickResult<TResult>();
 	}

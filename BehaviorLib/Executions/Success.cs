@@ -10,7 +10,7 @@ public class Success<TContext,TResult>:Action<TContext,TResult>
 		this.function = Function;
 	}
 	
-	public override ITickResult<TResult> Tick(TContext Context, int Milliseconds)
+	public override ITickResult<TResult> Tick(TContext Context, long Ticks)
 	{
 		return new SuccessTickResult<TResult>(function(Context));
 	}
