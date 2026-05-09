@@ -6,6 +6,14 @@ public abstract class Decorator<TContext,TResult>:IControl<TContext,TResult>
     {
         get;
     }
+    protected IBehavior<TContext, TResult> ChildBehavior;
+
+    public Decorator(IBehavior<TContext, TResult> ChildBehavior)
+    {
+        ArgumentNullException.ThrowIfNull(ChildBehavior);
+		this.ChildBehavior = ChildBehavior;
+    }
+    
     public abstract ITickResult<TResult> Tick(TContext Context, long Ticks);
 
     

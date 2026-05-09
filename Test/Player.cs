@@ -4,14 +4,18 @@ namespace Test;
 
 public class Player
 {
-	public ITickResult<int> LocateTreasure(long Ticks)
+	public int Position { get; set; }
+	
+	public int LocateTreasure(long Ticks)
 	{
-		return new SuccessTickResult<int>(15);
+		Console.WriteLine("Player: LocateTreasure({0})", Ticks);
+		return 15;
 	}
-	public ITickResult<bool> MoveTo(long Ticks, int Position)
+	public int MoveTo(long Ticks, int TargetPosition)
 	{
-		if (Ticks < 9) return new ProgressTickResult<bool>();
-		else return new SuccessTickResult<bool>(true);
+		Console.WriteLine("Player: MoveTo({0},{1})", Ticks,TargetPosition);
+		if (this.Position < TargetPosition) this.Position++;
+		return this.Position;
 	}
 	
 }

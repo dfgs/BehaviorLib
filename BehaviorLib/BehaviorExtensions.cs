@@ -1,10 +1,21 @@
 using System.Net;
+using BehaviorLib.Controls;
 using BehaviorLib.Executions;
 
 namespace BehaviorLib;
 
 public static class ParserExtensions
 {
+	
+	public static IBehavior<TContext,TResult> Until<TContext,TResult>(this IBehavior<TContext,TResult> ChildBehavior, System.Func<TContext,long,bool> Condition)
+	{
+		return new Until<TContext,TResult>(ChildBehavior,Condition);
+	}
+	public static IBehavior<TContext,TResult> While<TContext,TResult>(this IBehavior<TContext,TResult> ChildBehavior, System.Func<TContext,long,bool> Condition)
+	{
+		return new While<TContext,TResult>(ChildBehavior,Condition);
+	}
+	
 	#region Linq extensions
 	public static IBehavior<TContext, TResultOut> Select<TContext,TResultIn,TResultOut>(this IBehavior<TContext,TResultIn> BehaviorIn, Func<TResultIn,TResultOut> Selector)
 	{
